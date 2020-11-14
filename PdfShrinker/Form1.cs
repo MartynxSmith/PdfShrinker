@@ -78,6 +78,16 @@ namespace PdfShrinker
                 lblStatus.Visible = true;
                 lblFileStatus.Visible = true;
             });
+
+            if (maintaintimestamps.Checked)
+            {
+                Writelog("Timestamps will be retained on compressed files!");
+            }
+
+            if (overwriteoriginals.Checked){
+                Writelog("Original files will be overwritten!");
+            }
+
             foreach (var file in files)
             {
                 var sourceFile = file;
@@ -132,10 +142,10 @@ namespace PdfShrinker
                 this.AllowDrop = true;
                 btnBrowse.Enabled = true;
                 this.UseWaitCursor = false;
-                pbOverall.Visible = false;
-                pbFile.Visible = false;
-                lblStatus.Visible = false;
-                lblFileStatus.Visible = false;
+                pbOverall.Value = 0;
+                pbFile.Value = 0;
+                lblStatus.Text = "Complete!";
+                lblFileStatus.Text = "Complete!";
             });
             
         }
@@ -207,7 +217,7 @@ namespace PdfShrinker
                 processor.StartProcessing(gsArgs.ToArray(), null);
 
                 if (maintaintimestamps.Checked) {
-                    Clearlog("");
+                 
                     var fileInfo = new FileInfo(path);
                     int fyear = fileInfo.LastWriteTime.Year;
                     int fday = fileInfo.LastWriteTime.Day;
@@ -216,16 +226,14 @@ namespace PdfShrinker
                     int fminute = fileInfo.LastWriteTime.Minute;
                     int fsecond = fileInfo.LastWriteTime.Second;
                     File.SetLastWriteTime(outpath, new DateTime(fyear, fmonth, fday, fhour, fminute, fsecond));
-                    Writelog ("File: " + fileInfo.Name + " | Date set: " + fday + "/" + fmonth
-                        + "/" + fyear + " " + fhour + ":" + fminute + ":" + fsecond);
+                   
                  }
 
                 if (overwriteoriginals.Checked) {
-                    Clearlog("");
+                
                     outpath = Path.GetDirectoryName(outpath);
                     path = Path.GetDirectoryName(path);
-                    Writelog ("Temp working directory: " + outpath);
-                    Writelog ("Overwriting original files!");
+               
                     foreach (string newPath in Directory.GetFiles(outpath, "*.*", SearchOption.AllDirectories))
                       File.Copy(newPath, newPath.Replace(outpath, path), true);
                                            

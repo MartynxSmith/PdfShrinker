@@ -28,22 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.label1 = new System.Windows.Forms.Label();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.comboBoxQuality = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.overwriteoriginals = new System.Windows.Forms.CheckBox();
             this.maintaintimestamps = new System.Windows.Forms.CheckBox();
-            this.logbox = new System.Windows.Forms.TextBox();
             this.settings = new System.Windows.Forms.GroupBox();
-            this.output = new System.Windows.Forms.GroupBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.lblFileStatus = new System.Windows.Forms.Label();
-            this.pbOverall = new System.Windows.Forms.ProgressBar();
             this.pbFile = new System.Windows.Forms.ProgressBar();
+            this.pbOverall = new System.Windows.Forms.ProgressBar();
+            this.lblFileStatus = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.logbox = new System.Windows.Forms.TextBox();
             this.settings.SuspendLayout();
-            this.output.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,10 +59,10 @@
             // btnBrowse
             // 
             this.btnBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnBrowse.Location = new System.Drawing.Point(646, 22);
+            this.btnBrowse.Location = new System.Drawing.Point(646, 48);
             this.btnBrowse.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(481, 128);
+            this.btnBrowse.Size = new System.Drawing.Size(481, 86);
             this.btnBrowse.TabIndex = 1;
             this.btnBrowse.Text = "Browse...";
             this.btnBrowse.UseVisualStyleBackColor = true;
@@ -118,22 +117,6 @@
             this.maintaintimestamps.Text = "Maintain Last Modified Timestamps";
             this.maintaintimestamps.UseVisualStyleBackColor = true;
             // 
-            // logbox
-            // 
-            this.logbox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
-            this.logbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.logbox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.logbox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logbox.ForeColor = System.Drawing.Color.LawnGreen;
-            this.logbox.Location = new System.Drawing.Point(3, 22);
-            this.logbox.MinimumSize = new System.Drawing.Size(100, 100);
-            this.logbox.Multiline = true;
-            this.logbox.Name = "logbox";
-            this.logbox.ReadOnly = true;
-            this.logbox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.logbox.Size = new System.Drawing.Size(1127, 274);
-            this.logbox.TabIndex = 9;
-            // 
             // settings
             // 
             this.settings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -150,99 +133,100 @@
             this.settings.Text = "Settings";
             this.settings.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // output
-            // 
-            this.output.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.output.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.output.Controls.Add(this.logbox);
-            this.output.Location = new System.Drawing.Point(12, 278);
-            this.output.Name = "output";
-            this.output.Size = new System.Drawing.Size(1133, 299);
-            this.output.TabIndex = 11;
-            this.output.TabStop = false;
-            // 
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.logbox);
             this.groupBox1.Controls.Add(this.pbFile);
             this.groupBox1.Controls.Add(this.pbOverall);
             this.groupBox1.Controls.Add(this.lblFileStatus);
             this.groupBox1.Controls.Add(this.btnBrowse);
             this.groupBox1.Controls.Add(this.lblStatus);
-            this.groupBox1.Location = new System.Drawing.Point(12, 120);
+            this.groupBox1.Location = new System.Drawing.Point(12, 114);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1134, 161);
+            this.groupBox1.Size = new System.Drawing.Size(1134, 522);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             // 
-            // lblStatus
+            // pbFile
             // 
-            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblStatus.AutoEllipsis = true;
-            this.lblStatus.Location = new System.Drawing.Point(224, 22);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(154, 20);
-            this.lblStatus.TabIndex = 2;
-            this.lblStatus.Text = "Ready!";
-            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lblFileStatus
-            // 
-            this.lblFileStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFileStatus.AutoEllipsis = true;
-            this.lblFileStatus.AutoSize = true;
-            this.lblFileStatus.Location = new System.Drawing.Point(289, 94);
-            this.lblFileStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblFileStatus.Name = "lblFileStatus";
-            this.lblFileStatus.Size = new System.Drawing.Size(21, 20);
-            this.lblFileStatus.TabIndex = 2;
-            this.lblFileStatus.Text = "...";
-            this.lblFileStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.pbFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbFile.Location = new System.Drawing.Point(7, 100);
+            this.pbFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.pbFile.Name = "pbFile";
+            this.pbFile.Size = new System.Drawing.Size(613, 31);
+            this.pbFile.TabIndex = 4;
             // 
             // pbOverall
             // 
             this.pbOverall.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbOverall.Location = new System.Drawing.Point(7, 56);
+            this.pbOverall.Location = new System.Drawing.Point(7, 50);
             this.pbOverall.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pbOverall.Name = "pbOverall";
             this.pbOverall.Size = new System.Drawing.Size(613, 31);
             this.pbOverall.TabIndex = 3;
             // 
-            // pbFile
+            // lblFileStatus
             // 
-            this.pbFile.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbFile.Location = new System.Drawing.Point(7, 119);
-            this.pbFile.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.pbFile.Name = "pbFile";
-            this.pbFile.Size = new System.Drawing.Size(613, 31);
-            this.pbFile.TabIndex = 4;
+            this.lblFileStatus.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblFileStatus.AutoEllipsis = true;
+            this.lblFileStatus.Location = new System.Drawing.Point(7, 81);
+            this.lblFileStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblFileStatus.Name = "lblFileStatus";
+            this.lblFileStatus.Size = new System.Drawing.Size(613, 28);
+            this.lblFileStatus.TabIndex = 2;
+            this.lblFileStatus.Text = "...";
+            this.lblFileStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblStatus.AutoEllipsis = true;
+            this.lblStatus.Location = new System.Drawing.Point(7, 19);
+            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(613, 26);
+            this.lblStatus.TabIndex = 2;
+            this.lblStatus.Text = "Ready!";
+            this.lblStatus.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // logbox
+            // 
+            this.logbox.BackColor = System.Drawing.SystemColors.InactiveCaptionText;
+            this.logbox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.logbox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.logbox.ForeColor = System.Drawing.Color.LawnGreen;
+            this.logbox.Location = new System.Drawing.Point(3, 142);
+            this.logbox.MinimumSize = new System.Drawing.Size(100, 100);
+            this.logbox.Multiline = true;
+            this.logbox.Name = "logbox";
+            this.logbox.ReadOnly = true;
+            this.logbox.Size = new System.Drawing.Size(1128, 377);
+            this.logbox.TabIndex = 10;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(1158, 589);
+            this.ClientSize = new System.Drawing.Size(1158, 648);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.output);
             this.Controls.Add(this.settings);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.HelpButton = true;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.MaximizeBox = false;
             this.Name = "frmMain";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Show;
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "PDF Compressor";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.settings.ResumeLayout(false);
             this.settings.PerformLayout();
-            this.output.ResumeLayout(false);
-            this.output.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -258,14 +242,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox overwriteoriginals;
         private System.Windows.Forms.CheckBox maintaintimestamps;
-        public System.Windows.Forms.TextBox logbox;
         private System.Windows.Forms.GroupBox settings;
-        private System.Windows.Forms.GroupBox output;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ProgressBar pbFile;
         private System.Windows.Forms.ProgressBar pbOverall;
         private System.Windows.Forms.Label lblFileStatus;
         private System.Windows.Forms.Label lblStatus;
+        public System.Windows.Forms.TextBox logbox;
     }
 }
 
