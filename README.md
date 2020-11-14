@@ -1,7 +1,5 @@
-# PdfShrinker
-We needed a very simple way for staff to compress their PDF documents down so they could be sent via email.
-Adobe Distiller was overkill, and other tools involved too many steps or required the original documents to
-be modified. So to meet their needs I quickly put this small tool together.
+# PdfShrinker Forked From
+https://github.com/pgodwin/PdfShrinker/
 
 This application uses [Ghostscript](https://www.ghostscript.com) to handle the compression. You will need to have a version
 installed in order to use this tool. If you already use [PDF Creator](http://www.pdfforge.org/pdfcreator) or 
@@ -29,18 +27,11 @@ https://www.ghostscript.com/download/gsdnld.html
 To convert Word and Publisher files you'll Microsoft Word and/or Publisher installed on your PC. 
 Trial versions are available from https://products.office.com/en-au/try.
 
-## Download
-Binary releases available on https://github.com/pgodwin/PdfShrinker/releases
-
-For source-code, this is Github - you're looking at the source!
-
 ## Future Enhacements
 I'm not looking at adding any features to the application anytime soon. However some useful ideas are:
  - ~~Configurable compression setting~~ Added by @blu3r4y, thanks!
  - ~~Add the ability to retain file timestamps~~ forked & added by @phazerlazer
  - ~~Add the ability to overwrite original files~~ forked & added by @phazerlazer
- - Error handling/graceful failing if conversion/compression fails
- - Command-line options for batch jobs
 
 ## License
 As per Ghostscript requirements, this application is also licensed under the terms of the AGPL.
