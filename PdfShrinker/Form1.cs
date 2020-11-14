@@ -64,6 +64,7 @@ namespace PdfShrinker
 
         private void ProcessFiles(string[] files)
         {
+            Clearlog("");
             var formats = new string[] {".docx", ".doc", ".pub", ".pubx"};
             UIThread(() =>
             {
@@ -82,9 +83,19 @@ namespace PdfShrinker
                 var sourceFile = file;
                 
                 var fileInfo = new FileInfo(sourceFile);
-
                 var newFilename = Path.Combine(fileInfo.DirectoryName,
                     Path.GetFileNameWithoutExtension(sourceFile) + "-compressed.pdf");
+                Writelog("Compressed PDF Saved: " + sourceFile + "-compressed.pdf");
+                if (overwriteoriginals.Checked)
+                {
+                    string tempFolder = Path.GetTempFileName();
+                    File.Delete(tempFolder);
+                    Directory.CreateDirectory(tempFolder);
+
+                    newFilename = Path.Combine(tempFolder,
+                        Path.GetFileNameWithoutExtension(sourceFile) + ".pdf");
+                }
+                            
 
 
                 var counter = 0;
@@ -93,7 +104,7 @@ namespace PdfShrinker
                 {
                     counter++;
                     newFilename = Path.Combine(fileInfo.DirectoryName,
-                        Path.GetFileNameWithoutExtension(sourceFile) + "-compressed" + counter + ".pdf");
+                        Path.GetFileNameWithoutExtension(sourceFile) + counter +  ".pdf");
                 }
 
 
@@ -125,8 +136,6 @@ namespace PdfShrinker
                 pbFile.Visible = false;
                 lblStatus.Visible = false;
                 lblFileStatus.Visible = false;
-
-                // MessageBox.Show("Conversion Complete");
             });
             
         }
@@ -175,6 +184,11 @@ namespace PdfShrinker
             //  - /printer selects output similar to the Acrobat Distiller "Print Optimized" setting.
             //  - /prepress selects output similar to Acrobat Distiller "Prepress Optimized" setting.
             //  - /default selects output intended to be useful across a wide variety of uses, possibly at the expense of a larger output file.
+
+
+
+            //string selected = comboBoxQuality.Text.ToLower();
+           
             gsArgs.Add("-dPDFSETTINGS=/" + this._quality);
 
 
@@ -186,18 +200,55 @@ namespace PdfShrinker
 
             using (GhostscriptProcessor processor = new GhostscriptProcessor(_gs_verssion_info, true))
             {
-
-                processor.Processing += new GhostscriptProcessorProcessingEventHandler(processor_Processing);
+                                processor.Processing += new GhostscriptProcessorProcessingEventHandler(processor_Processing);
 
                 processor.Completed += processor_Completed;
 
                 processor.StartProcessing(gsArgs.ToArray(), null);
 
-                
+                if (maintaintimestamps.Checked) {
+                    Clearlog("");
+                    var fileInfo = new FileInfo(path);
+                    int fyear = fileInfo.LastWriteTime.Year;
+                    int fday = fileInfo.LastWriteTime.Day;
+                    int fmonth = fileInfo.LastWriteTime.Month;
+                    int fhour = fileInfo.LastWriteTime.Hour;
+                    int fminute = fileInfo.LastWriteTime.Minute;
+                    int fsecond = fileInfo.LastWriteTime.Second;
+                    File.SetLastWriteTime(outpath, new DateTime(fyear, fmonth, fday, fhour, fminute, fsecond));
+                    Writelog ("File: " + fileInfo.Name + " | Date set: " + fday + "/" + fmonth
+                        + "/" + fyear + " " + fhour + ":" + fminute + ":" + fsecond);
+                 }
+
+                if (overwriteoriginals.Checked) {
+                    Clearlog("");
+                    outpath = Path.GetDirectoryName(outpath);
+                    path = Path.GetDirectoryName(path);
+                    Writelog ("Temp working directory: " + outpath);
+                    Writelog ("Overwriting original files!");
+                    foreach (string newPath in Directory.GetFiles(outpath, "*.*", SearchOption.AllDirectories))
+                      File.Copy(newPath, newPath.Replace(outpath, path), true);
+                                           
+                    
+                  
+
+               
+
+                }
+
             }
 
             
         }
+
+        private void Writelog(string log) {
+            UIThread(() => logbox.Text = logbox.Text + log + "\r\n");
+        }
+        private void Clearlog(string log)
+        {
+            UIThread(() => logbox.Text = log);
+        }
+
 
         void processor_Completed(object sender, GhostscriptProcessorEventArgs e)
         {
@@ -253,7 +304,12 @@ namespace PdfShrinker
 
         private void comboBoxQuality_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this._quality = comboBoxQuality.Text;
+            this._quality = comboBoxQuality.Text.ToLower();
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
