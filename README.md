@@ -13,9 +13,12 @@ to automate those applications to save your documents as PDFs before compressing
 ## Usage
 
 Simply drag some PDF or Word or Publisher files you'd like compressed to PDF and it will spit out 
-compressed versions in the same directory as the originals. See below:
+compressed versions in the same directory as the originals.
 
-![Drag and Drop](http://i.imgur.com/64PCuYo.gif)
+Or choose to overwrite the orginal files and or keep the original modified dates. See below:
+
+
+![Drag and drop example](https://i.imgur.com/qqMiSmr.gif)
 
 You can also press the *Open* button to browse for files using the regular Open File Dialog.
 
@@ -41,4 +44,7 @@ I'm not looking at adding any features to the application anytime soon. However 
 
 ## License
 As per Ghostscript requirements, this application is also licensed under the terms of the AGPL.
+
+## Icon Source
+<a href="https://iconscout.com/icons/picture-as-pdf" target="_blank">Picture As Pdf Icon</a> on <a href="https://iconscout.com">Iconscout</a>
 
