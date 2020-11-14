@@ -1,4 +1,5 @@
-# PdfShrinker Forked From
+# PdfShrinker
+Forked From:
 https://github.com/pgodwin/PdfShrinker/
 
 This application uses [Ghostscript](https://www.ghostscript.com) to handle the compression. You will need to have a version
