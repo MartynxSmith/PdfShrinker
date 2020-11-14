@@ -34,6 +34,8 @@ For source-code, this is Github - you're looking at the source!
 ## Future Enhacements
 I'm not looking at adding any features to the application anytime soon. However some useful ideas are:
  - ~~Configurable compression setting~~ Added by @blu3r4y, thanks!
+ - ~~Add the ability to retain file timestamps~~ forked & added by @phazerlazer
+ - ~~Add the ability to overwrite original files~~ forked & added by @phazerlazer
  - Error handling/graceful failing if conversion/compression fails
  - Command-line options for batch jobs
 
